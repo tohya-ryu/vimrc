@@ -22,11 +22,14 @@ set cursorline
 hi CursorLine cterm=NONE
 set colorcolumn=80
 " highlight LineNr ctermfg=grey
+autocmd BufRead,BufNewFile xmkfile setlocal filetype=make
 
 autocmd BufNewFile,BufRead *.68k setlocal ft=asm68k
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb 
+    \ setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd BufNewFile,BufRead *.html.php 
     \ setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd BufNewFile,BufRead *.scss 
     \ setlocal shiftwidth=2 tabstop=2 softtabstop=2
@@ -41,4 +44,21 @@ autocmd FileType markdown setlocal colorcolumn=
 autocmd FileType netrw setlocal colorcolumn=
 
 " call togglebg#map("<F5>")
-"
+
+" 'cd' towards the directory in which the current file is edited
+" but only change the path for the current window
+nnoremap <leader>cd :lcd %:h<CR>
+
+" netrw setup
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_altv = 1
+" let g:netrw_winsize = 15
+let g:netrw_browse_split = 4
+command! Ll Lexplore | vert res 25
+" automatically open netrw on left side upon starting vim
+" augroup ProjectDrawer
+"     autocmd!
+"     autocmd VimEnter * :Vexplore
+" augroup END
+
