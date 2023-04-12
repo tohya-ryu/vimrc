@@ -1,2 +1,2 @@
-# tohya-vimrc
-my vimrc lol
+# vimrc
+a copy of my .vimrc
