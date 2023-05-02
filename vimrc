@@ -2,8 +2,9 @@ filetype plugin indent on
 
 set nocompatible
 set t_Co=16
-"call pathogen#infect()
+call pathogen#infect()
 syntax on
+filetype plugin indent on
 
 "set background=dark " dark | light "                       
 "colorscheme solarized                                      
@@ -27,6 +28,7 @@ autocmd BufRead,BufNewFile xmkfile setlocal filetype=make
 autocmd BufNewFile,BufRead *.68k setlocal ft=asm68k
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb 
     \ setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.php 
@@ -62,3 +64,15 @@ command! Ll Lexplore | vert res 25
 "     autocmd VimEnter * :Vexplore
 " augroup END
 
+" NERDTree
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 &&
+    \ exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') &&
+    \ b:NERDTree.isTabTree() | quit | endif
